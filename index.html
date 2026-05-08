@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dream Interiors | Luxury Interior Design</title>
+  <!-- Google Fonts + Tailwind CSS + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom Configuration for Tailwind to override default theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'warm-beige': '#F7F3EB',
+            'stone-grey': '#E9E5DE',
+            'wood-brown': '#8B5A2B',
+            'gold-accent': '#C6A43F',
+            'teal-deep': '#2A9D8F',
+            'charcoal-soft': '#4A4A4A',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* custom styles for carousel, lightbox, filters, mobile menu */
+    .carousel-slide {
+      transition: transform 0.4s ease-in-out;
+    }
+    .carousel-indicator-dot {
+      transition: background-color 0.2s;
+    }
+    .lightbox {
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .filter-btn.active {
+      background-color: #C6A43F;
+      color: white;
+      border-color: #C6A43F;
+    }
+    .portfolio-item {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* mobile menu toggle styles */
+    .mobile-nav-open {
+      display: block !important;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin-top: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body class="bg-warm-beige font-sans text-charcoal-soft">
+
+  <!-- Navbar -->
+  <nav class="bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-stone-grey">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex flex-wrap items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-couch text-gold-accent text-2xl"></i>
+        <span class="text-2xl font-bold tracking-tight text-wood-brown">Dream<span class="text-gold-accent">Interiors</span></span>
+      </div>
+      <!-- Mobile menu button -->
+      <button id="menuToggle" class="md:hidden text-2xl text-wood-brown focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Desktop & mobile links -->
+      <div id="navLinks" class="nav-links md:flex md:flex-row md:items-center md:space-x-7 space-y-3 md:space-y-0 text-base font-medium">
+        <a href="#home" class="block hover:text-gold-accent transition">Home</a>
+        <a href="#about" class="block hover:text-gold-accent transition">About</a>
+        <a href="#services" class="block hover:text-gold-accent transition">Services</a>
+        <a href="#portfolio" class="block hover:text-gold-accent transition">Portfolio</a>
+        <a href="#testimonials" class="block hover:text-gold-accent transition">Testimonials</a>
+        <a href="#contact" class="block hover:text-gold-accent transition">Contact</a>
+        <a href="#contact" class="md:hidden bg-gold-accent text-white px-4 py-2 rounded-full text-center">Free Quote</a>
+      </div>
+      <div class="hidden md:block">
+        <a href="#contact" class="bg-gold-accent hover:bg-wood-brown text-white px-5 py-2 rounded-full transition font-semibold text-sm">Get Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&auto=format'); background-size: cover;">
+      <div class="text-center text-white px-5 max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight">Transform Your Space with Dream Interiors</h1>
+        <p class="text-xl md:text-2xl mt-4 font-light tracking-wide">Modular Kitchens | Wardrobes | Office Interiors | Full Home Solutions</p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a href="#services" class="bg-gold-accent hover:bg-wood-brown text-white font-semibold px-7 py-3 rounded-full transition shadow-lg">Explore Services</a>
+          <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-charcoal-soft text-white font-semibold px-7 py-3 rounded-full transition shadow-md">Get Free Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Summary Cards (Home quick preview) -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-12">
+          <span class="text-gold-accent font-semibold tracking-wide uppercase">What we excel</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2 text-wood-brown">Signature Services</h2>
+          <div class="w-24 h-1 bg-gold-accent mx-auto mt-3 rounded-full"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-warm-beige p-7 rounded-2xl shadow-md hover:shadow-xl transition text-center">
+            <i class="fas fa-kitchen-set text-4xl text-gold-accent mb-4"></i>
+            <h3 class="text-xl font-bold text-wood-brown">Modular Kitchen</h3>
+            <p class="mt-2 text-gray-600">Sleek, ergonomic designs with premium finishes and smart storage.</p>
+          </div>
+          <div class="bg-warm-beige p-7 rounded-2xl shadow-md hover:shadow-xl transition text-center">
+            <i class="fas fa-wardrobe text-4xl text-gold-accent mb-4"></i>
+            <h3 class="text-xl font-bold text-wood-brown">Custom Wardrobes</h3>
+            <p class="mt-2 text-gray-600">Tailor-made wardrobes maximizing space and elegance.</p>
+          </div>
+          <div class="bg-warm-beige p-7 rounded-2xl shadow-md hover:shadow-xl transition text-center">
+            <i class="fas fa-building text-4xl text-gold-accent mb-4"></i>
+            <h3 class="text-xl font-bold text-wood-brown">Office Interiors</h3>
+            <p class="mt-2 text-gray-600">Inspiring workspaces that boost productivity & style.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT PAGE SECTION -->
+    <section id="about" class="py-20 bg-stone-grey/30">
+      <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-gold-accent font-semibold uppercase tracking-wide">Our legacy</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-wood-brown mt-2 mb-4">Creating homes,<br>crafting dreams</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">Established in 2014, Dream Interiors provides practical, stylish interior solutions for homes and offices. We blend functionality with aesthetics, delivering bespoke designs that reflect your personality.</p>
+          <div class="mt-5 space-y-3">
+            <div class="flex items-center gap-3"><i class="fas fa-award text-gold-accent"></i><span>Quality materials & on-time delivery</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-users text-gold-accent"></i><span>One-on-one client counseling</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-calendar-check text-gold-accent"></i><span>100+ projects completed</span></div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <div><span class="font-bold text-2xl text-teal-deep">2014</span><br>Year of inception</div>
+            <div><span class="font-bold text-2xl text-teal-deep">250+</span><br>Happy families</div>
+            <div><span class="font-bold text-2xl text-teal-deep">15+</span><br>Expert designers</div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+          <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=600&auto=format" alt="Dream Interiors Team" class="w-full h-auto object-cover" loading="lazy">
+          <div class="bg-white p-3 text-center text-sm text-gray-500">* Our creative team at work</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES FULL PAGE (list all 6 services) -->
+    <section id="services" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-12">
+          <span class="text-gold-accent font-semibold uppercase">comprehensive solutions</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-wood-brown mt-2">Everything under one roof</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-kitchen-set text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">Modular Kitchens</h3><p class="text-gray-600">Stylish, durable, tailored layouts with premium hardware.</p></div></div>
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-draw-polygon text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">Custom Wardrobes</h3><p class="text-gray-600">Walk-in or sliding, maximize space effortlessly.</p></div></div>
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-briefcase text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">Office Interiors</h3><p class="text-gray-600">Ergonomic, modern work environments.</p></div></div>
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-chalkboard text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">False Ceilings</h3><p class="text-gray-600">Gypsum & POP designer ceilings, ambient lighting.</p></div></div>
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-toilet text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">Toilet Cubicle Works</h3><p class="text-gray-600">Waterproof, hygienic, modern bathroom partitions.</p></div></div>
+          <div class="flex gap-4 p-5 rounded-xl bg-warm-beige shadow-sm hover:shadow"><i class="fas fa-store text-3xl text-gold-accent"></i><div><h3 class="font-bold text-lg">Cafe / Showroom Interiors</h3><p class="text-gray-600">Brand-focused, welcoming commercial spaces.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO PREVIEW (3 projects + link to Portfolio section) -->
+    <section class="py-10 bg-stone-grey/20">
+      <div class="max-w-7xl mx-auto px-5 text-center">
+        <h3 class="text-2xl font-semibold text-wood-brown">Inspiration Gallery</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6 max-w-4xl mx-auto">
+          <div class="rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&auto=format" class="w-full h-48 object-cover" alt="Modern kitchen preview"></div>
+          <div class="rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=400&auto=format" class="w-full h-48 object-cover" alt="Wardrobe preview"></div>
+          <div class="rounded-xl overflow-hidden shadow-md"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&auto=format" class="w-full h-48 object-cover" alt="Office interior preview"></div>
+        </div>
+        <a href="#portfolio" class="inline-block mt-6 text-gold-accent font-semibold border-b-2 border-gold-accent hover:text-wood-brown">View full portfolio →</a>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO PAGE (Filterable gallery + Lightbox) -->
+    <section id="portfolio" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-bold text-wood-brown">Our Creations</h2>
+          <p class="text-gray-500 mt-2">Explore design excellence across categories</p>
+          <div class="flex flex-wrap justify-center gap-3 mt-6" id="filterButtons">
+            <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full border border-gold-accent text-gold-accent font-medium hover:bg-gold-accent hover:text-white transition">All</button>
+            <button data-filter="kitchen" class="filter-btn px-5 py-2 rounded-full border border-gold-accent text-gold-accent font-medium hover:bg-gold-accent hover:text-white transition">Kitchen</button>
+            <button data-filter="wardrobe" class="filter-btn px-5 py-2 rounded-full border border-gold-accent text-gold-accent font-medium hover:bg-gold-accent hover:text-white transition">Wardrobe</button>
+            <button data-filter="office" class="filter-btn px-5 py-2 rounded-full border border-gold-accent text-gold-accent font-medium hover:bg-gold-accent hover:text-white transition">Office</button>
+            <button data-filter="others" class="filter-btn px-5 py-2 rounded-full border border-gold-accent text-gold-accent font-medium hover:bg-gold-accent hover:text-white transition">Others</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="portfolioGrid">
+          <!-- portfolio items dynamically filled but also static for clarity but using JS to manage filtering? Actually I'll embed static items with data-category then JS filter and lightbox -->
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="kitchen">
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef2e77?w=600&auto=format" alt="Modern Kitchen" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1556912173-3bb406ef2e77?w=1200&auto=format" data-title="Contemporary Modular Kitchen">
+            <div class="p-4"><h3 class="font-bold">Geometric Gloss Kitchen</h3><p class="text-sm text-gray-500">Kitchen</p></div>
+          </div>
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="wardrobe">
+            <img src="https://images.unsplash.com/photo-1617127365659-c47b8641a74a?w=600&auto=format" alt="Custom Wardrobe" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1617127365659-c47b8641a74a?w=1200&auto=format" data-title="Elegant Walk-in Wardrobe">
+            <div class="p-4"><h3 class="font-bold">Luxury Walk-in Wardrobe</h3><p class="text-sm text-gray-500">Wardrobe</p></div>
+          </div>
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="office">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format" alt="Office Interior" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format" data-title="Modern Corporate Office">
+            <div class="p-4"><h3 class="font-bold">Executive Office Suite</h3><p class="text-sm text-gray-500">Office</p></div>
+          </div>
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="kitchen">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a5cf1f8ce?w=600&auto=format" alt="Italian Kitchen" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1600607687920-4e2a5cf1f8ce?w=1200&auto=format" data-title="Italian Marble Kitchen">
+            <div class="p-4"><h3 class="font-bold">Italian Marble Kitchen</h3><p class="text-sm text-gray-500">Kitchen</p></div>
+          </div>
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="wardrobe">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&auto=format" alt="Sliding Wardrobe" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&auto=format" data-title="Sliding Door Wardrobe">
+            <div class="p-4"><h3 class="font-bold">High Gloss Sliding Wardrobe</h3><p class="text-sm text-gray-500">Wardrobe</p></div>
+          </div>
+          <div class="portfolio-item bg-warm-beige rounded-xl overflow-hidden shadow-md" data-category="others">
+            <img src="https://images.unsplash.com/photo-1600210491892-11d54c8ec1e3?w=600&auto=format" alt="False Ceiling Design" loading="lazy" class="w-full h-56 object-cover cursor-pointer lightbox-trigger" data-fullimg="https://images.unsplash.com/photo-1600210491892-11d54c8ec1e3?w=1200&auto=format" data-title="Artistic False Ceiling">
+            <div class="p-4"><h3 class="font-bold">Luxury False Ceiling</h3><p class="text-sm text-gray-500">Others</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS CAROUSEL SECTION -->
+    <section id="testimonials" class="py-20 bg-stone-grey/40">
+      <div class="max-w-5xl mx-auto px-5 text-center">
+        <span class="text-gold-accent font-semibold uppercase">client love</span>
+        <h2 class="text-3xl font-bold text-wood-brown mt-2 mb-10">What Our Clients Say</h2>
+        <div class="relative bg-white rounded-2xl shadow-xl p-6 md:p-10">
+          <div class="overflow-hidden relative h-64 md:h-48" id="carouselSlidesContainer">
+            <div class="flex transition-transform duration-500 ease-in-out h-full" id="carouselTrack">
+              <div class="w-full flex-shrink-0 px-4 flex flex-col justify-center items-center text-center">
+                <i class="fas fa-quote-left text-3xl text-gold-accent opacity-50 mb-4"></i>
+                <p class="text-gray-700 text-lg md:text-xl italic">"Dream Interiors transformed our house into a masterpiece. Attention to detail and timely delivery was exceptional!"</p>
+                <h4 class="font-bold mt-5 text-wood-brown">— Riya Mehta, Mumbai</h4>
+              </div>
+              <div class="w-full flex-shrink-0 px-4 flex flex-col justify-center items-center text-center">
+                <i class="fas fa-quote-left text-3xl text-gold-accent opacity-50 mb-4"></i>
+                <p class="text-gray-700 text-lg md:text-xl italic">"The modular kitchen and wardrobe designs are stunning. Professional team from start to finish."</p>
+                <h4 class="font-bold mt-5 text-wood-brown">— Ankit Sharma, Delhi</h4>
+              </div>
+              <div class="w-full flex-shrink-0 px-4 flex flex-col justify-center items-center text-center">
+                <i class="fas fa-quote-left text-3xl text-gold-accent opacity-50 mb-4"></i>
+                <p class="text-gray-700 text-lg md:text-xl italic">"Our office interiors are now the talk of the town. Functional, modern, and within budget."</p>
+                <h4 class="font-bold mt-5 text-wood-brown">— Sneha Nair, Bangalore</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Controls -->
+          <button id="prevSlide" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gold-accent"><i class="fas fa-chevron-left"></i></button>
+          <button id="nextSlide" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gold-accent"><i class="fas fa-chevron-right"></i></button>
+          <div class="flex justify-center gap-3 mt-6" id="carouselDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl font-bold text-wood-brown">Let’s Create Magic</h2>
+          <p class="text-gray-600 mt-2 mb-6">Reach out for a free consultation. Your dream space awaits.</p>
+          <div class="space-y-4 text-gray-700">
+            <div class="flex items-center gap-3"><i class="fas fa-phone-alt text-gold-accent w-6"></i><span>+91-9015049539</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-envelope text-gold-accent w-6"></i><span>info@dreaminteriors.co.in</span></div>
+            <div class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gold-accent w-6 mt-1"></i><span>2nd Floor, Design Hub, Andheri East, Mumbai - 400069</span></div>
+          </div>
+          <div class="mt-6">
+            <iframe class="w-full h-48 rounded-xl shadow-md" frameborder="0" style="border:0" src="https://maps.google.com/maps?q=Mumbai%2C%20Andheri%20East&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <button id="callbackBtn" class="mt-6 bg-teal-deep hover:bg-wood-brown text-white px-6 py-3 rounded-full font-semibold transition"><i class="fas fa-phone-volume mr-2"></i>Request a callback</button>
+        </div>
+        <div class="bg-warm-beige p-7 rounded-2xl shadow-lg">
+          <h3 class="text-2xl font-semibold text-wood-brown mb-4">Send a Message</h3>
+          <form id="contactForm">
+            <div class="mb-4"><input type="text" placeholder="Full Name" class="w-full p-3 rounded-lg border border-gray-300 focus:border-gold-accent outline-none" required></div>
+            <div class="mb-4"><input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border border-gray-300 focus:border-gold-accent outline-none" required></div>
+            <div class="mb-4"><input type="tel" placeholder="Phone Number" class="w-full p-3 rounded-lg border border-gray-300 focus:border-gold-accent outline-none" required></div>
+            <div class="mb-4"><textarea rows="4" placeholder="Tell us about your project..." class="w-full p-3 rounded-lg border border-gray-300 focus:border-gold-accent outline-none" required></textarea></div>
+            <button type="submit" class="bg-gold-accent hover:bg-wood-brown text-white font-semibold px-6 py-3 rounded-full w-full transition">Send Inquiry</button>
+          </form>
+          <p class="text-xs text-center text-gray-400 mt-4">* We’ll get back within 24 hours</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-wood-brown text-white py-8">
+    <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex gap-5 text-2xl">
+        <i class="fab fa-facebook hover:text-gold-accent cursor-pointer"></i>
+        <i class="fab fa-twitter hover:text-gold-accent cursor-pointer"></i>
+        <i class="fab fa-instagram hover:text-gold-accent cursor-pointer"></i>
+        <i class="fab fa-linkedin-in hover:text-gold-accent cursor-pointer"></i>
+      </div>
+      <p class="text-sm">&copy; 2025 Dream Interiors | Crafting beautiful spaces since 2014</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox fixed inset-0 bg-black/90 z-50 hidden items-center justify-center" style="visibility: hidden; opacity: 0;">
+    <div class="relative max-w-4xl w-full mx-4">
+      <img id="lightboxImg" src="" alt="full view" class="w-full rounded-lg shadow-2xl">
+      <button id="closeLightbox" class="absolute -top-10 right-0 text-white text-3xl">&times;</button>
+      <p id="lightboxCaption" class="text-white text-center mt-3 text-lg"></p>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // --- LIGHTBOX logic ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+    
+    function openLightbox(imgSrc, title) {
+      lightboxImg.src = imgSrc;
+      lightboxCaption.innerText = title || 'Dream Interiors Project';
+      lightbox.style.visibility = 'visible';
+      lightbox.style.opacity = '1';
+      lightbox.style.display = 'flex';
+    }
+    lightboxTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        const fullImg = trigger.getAttribute('data-fullimg') || trigger.src;
+        const title = trigger.getAttribute('data-title') || 'Design project';
+        openLightbox(fullImg, title);
+      });
+    });
+    closeLightbox.addEventListener('click', () => {
+      lightbox.style.opacity = '0';
+      lightbox.style.visibility = 'hidden';
+      setTimeout(() => { lightbox.style.display = 'none'; }, 300);
+    });
+    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox.click(); });
+
+    // Portfolio filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filterValue = btn.getAttribute('data-filter');
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    // Ensure initial filter "all" active displays all
+    portfolioItems.forEach(item => item.style.display = 'block');
+
+    // --- Testimonial Carousel ---
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const dotsContainer = document.getElementById('carouselDots');
+    let currentIndex = 0;
+    const slideWidth = () => slides[0]?.getBoundingClientRect().width;
+    function updateTrack() {
+      const width = slideWidth();
+      track.style.transform = `translateX(-${currentIndex * width}px)`;
+      updateDots();
+    }
+    function updateDots() {
+      const dots = document.querySelectorAll('.carousel-indicator-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) dot.classList.add('bg-gold-accent', 'w-6');
+        else dot.classList.remove('bg-gold-accent', 'w-6');
+      });
+    }
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-indicator-dot', 'h-2', 'w-2', 'rounded-full', 'bg-gray-400', 'mx-1', 'transition-all');
+        if (idx === currentIndex) dot.classList.add('bg-gold-accent', 'w-6');
+        dot.addEventListener('click', () => {
+          currentIndex = idx;
+          updateTrack();
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateTrack();
+    });
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateTrack();
+    });
+    window.addEventListener('resize', () => { updateTrack(); });
+    createDots();
+    updateTrack();
+
+    // Contact form demo handling & callback button
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('✨ Thank you! Your message has been sent (demo). Replace with Formspree endpoint in production.');
+      contactForm.reset();
+    });
+    document.getElementById('callbackBtn').addEventListener('click', () => {
+      alert('Callback request received! Our team will contact you shortly (demo mode).');
+    });
+  </script>
+  <!-- README Instructions (as HTML comment for maintainer) -->
+  <!-- 
+    ========== README / REPLACE PLACEHOLDERS ==========
+    To deploy this website:
+    1. Replace all placeholder images: Use any high-res interior images. Update src attributes in hero, team, portfolio items.
+    2. Email/Contact form: Replace action URL with Formspree endpoint (https://formspree.io/f/your-id) by modifying form action string.
+    3. Map embed: Replace Google Maps iframe src with your exact location.
+    4. Social Media icons: Attach correct profile URLs (wrap each icon with <a>).
+    5. Update phone/email in contact & footer as needed.
+    6. Host: Upload to Netlify/Vercel (drag and drop folder). 
+    This static site uses Tailwind, FontAwesome, vanilla JS. No build step required.
+  -->
+</body>
+</html>
